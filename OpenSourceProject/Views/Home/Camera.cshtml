@@ -27,6 +27,10 @@
 
         </div>
     </div>
+    <br/><br/>
+    <div class="row">
+        <input id="submitPicture" type="submit"/>
+    </div>
 </div>
 <script>
         var video = document.getElementById('video');
@@ -81,4 +85,34 @@
         //      var myImage = canvas.toDataURL("image/png");
         //  }
         //  }
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+        $('#submitPicture').click(function () {
+            $.ajax({
+                type: "POST",
+                url: serviceURL,
+                data: param = "",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: successFunc,
+                error: errorFunc
+            });
+
+            function successFunc(data, status) {
+                alert(data);
+            }
+
+            function errorFunc() {
+                var canvas3 = document.getElementById('canvas3');
+                var myImage = canvas3.toDataURL("image/png");
+                window.location.href = myImage;
+                //alert(myImage);
+            }
+        });
+        var serviceURL = '/AjaxTest/FirstAjax';
+
+        
+    });
 </script>
