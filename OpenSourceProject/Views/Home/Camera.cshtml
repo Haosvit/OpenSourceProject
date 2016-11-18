@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Camera";
+}
+
+<h2>Camera</h2>
+
+<div id="container">
+    <video id="video" autoplay="true" width="640" height="480"> </video>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-sm-4">
+            <canvas id="canvas1" width="320" height="240"></canvas>
+            <br />
+            <button id="snap1">Snap Photo</button>
+        </div>
+        <div class="col-sm-4">
+            <canvas id="canvas2" width="320" height="240"></canvas>
+            <br />
+            <button id="snap2">Snap Photo</button>
+        </div>
+        <div class="col-sm-4">
+            <canvas id="canvas3" width="320" height="240"></canvas>
+            <br />
+            <button id="snap3">Snap Photo</button>
+
+        </div>
+    </div>
+</div>
+<script>
+        var video = document.getElementById('video');
+
+        navigator.getUserMedia = navigator.getUserMedia
+                || navigator.webkitGetUserMedia || navigator.mozGetUserMedia
+                || navigator.msGetUserMedia || navigator.oGetUserMedia;
+
+        if (navigator.getUserMedia) {
+            navigator.getUserMedia({
+                video : true
+            }, handleVideo, videoError);
+        }
+
+        function handleVideo(stream) {
+            video.src = window.URL.createObjectURL(stream);
+        }
+
+        function videoError(e) {
+            // do something
+        }
+
+        //Anh 1
+        var canvas1 = document.getElementById('canvas1');
+        var context1 = canvas1.getContext('2d');
+
+        // Trigger photo take
+        document.getElementById("snap1").addEventListener("click", function() {
+            context1.drawImage(video, 0, 0, 320, 240);
+        });
+        //Anh 2
+        var canvas2 = document.getElementById('canvas2');
+        var context2 = canvas2.getContext('2d');
+
+        // Trigger photo take
+        document.getElementById("snap2").addEventListener("click", function() {
+            context2.drawImage(video, 0, 0, 320, 240);
+        });
+
+        //Anh 3
+        var canvas3 = document.getElementById('canvas3');
+        var context3 = canvas3.getContext('2d');
+
+        // Trigger photo take
+        document.getElementById("snap3").addEventListener("click", function() {
+            context3.drawImage(video, 0, 0, 320, 240);
+        });
+
+        //function putImage() {
+        //  if (canvas.getContext) {
+        //      var ctx = canvas.getContext("2d");
+        //      var myImage = canvas.toDataURL("image/png");
+        //  }
+        //  }
+</script>

@@ -26,5 +26,11 @@ namespace OpenSourceProject.Controllers
 
 			return View();
 		}
-	}
+
+        public ActionResult Camera()
+        {
+
+            return View();
+        }
+    }
 }
