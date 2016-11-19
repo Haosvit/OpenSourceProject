@@ -1,0 +1,59 @@
+﻿@{
+	ViewBag.Title = "REGISTER";
+}
+
+<div class="row" style="margin-top: 50px; padding: 20px;">
+
+
+	<div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+
+		<form action="" method="POST" role="form">
+			<legend style="width: 80%">Register</legend>
+
+			<div class="form-group">
+				<label for="fullName">Full name</label>
+				<input type="text" class="form-control" id="fullname" name="fullName">
+			</div>
+
+
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input type="email" class="form-control" id="email" name="email">
+			</div>
+
+			<div>
+				<label class="radio-inline">
+					<input type="radio" name="optradio" checked="checked">Male
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="optradio">Female
+				</label>
+			</div>
+			<div style="margin-top: 30px;">
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
+
+		</form>
+
+	</div>
+	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		<div class="ImagesContainer">
+			<img class="Thumbnail" id="img1" src="~/Content/Images/no-image.png" onclick="capturePictureFor(this)"/>
+			<img class="Thumbnail" id="img2" src="~/Content/Images/no-image.png" onclick="capturePictureFor(this)" />
+			<img class="Thumbnail" id="img3" src="~/Content/Images/no-image.png" onclick="capturePictureFor(this)" />
+		</div>
+		
+	</div>
+
+</div>
+
+@section Scripts {
+<script>
+	function capturePictureFor(element) {
+		var elemId = $(element).attr("id");
+
+		window.open('/Camera/Index', "wndPopUp", 'width=720,height=400,left=100,top=100,resizable=no');
+
+	}
+	</script>
+}

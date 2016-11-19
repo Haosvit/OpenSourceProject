@@ -1,0 +1,55 @@
+﻿.Header {
+	box-shadow: 0px 4px 4px #e6e6e6;
+	z-index: 200;
+}
+.HeadLine1 {
+	background-color: #2c3e50;
+	color:  #ecf0f1;
+	height: 70%;
+	width: 100%;
+	font-size: 30px;
+	font-weight: 700;
+	padding-left: 25px;
+}
+
+.HeadLine2 {
+	background-color: #34495e;
+	color: #ecf0f1;
+	width: 100%;
+	font-size: 14px;
+	font-weight: 600;
+	padding-left: 25px;
+}
+
+.PageLogo {
+	background-color: #ecf0f1;
+	width: 150px; 
+}
+
+.Footer {
+	background-color: #34495e;
+	color:  #ecf0f1;
+}
+
+.LoginForm {
+	width: 50%;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #34495e !important;
+	color: #ecf0f1 !important;
+}
+
+.LoginForm input {
+	color: #000;
+}
+
+.LoginForm legend {
+	color: #ecf0f1;
+}
+
+.Thumbnail {
+	width: 150px;
+	border: 1px solid #34495e;
+	cursor: pointer;
+}
