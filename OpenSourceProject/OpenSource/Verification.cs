@@ -6,7 +6,7 @@ namespace OpenSourceProject.OpenSource
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Identification")]
+    [Table("Verification")]
     public partial class Verification
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -15,7 +15,7 @@ namespace OpenSourceProject.OpenSource
 
         [Required]
         [StringLength(100)]
-        public string PersistedUser { get; set; }
+        public string PersistedFaceId  { get; set; }
 
         [Required]
         public int UserId { get; set; }
