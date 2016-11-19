@@ -22,7 +22,14 @@ namespace OpenSourceProject.Controllers
 
 		public ActionResult Register()
 		{
-			return View();
+            string IMAGE_DIR1 = "~/Content/Images/Register/";
+            string path1 = Server.MapPath(IMAGE_DIR1 + "RegisterImage1.jpg");
+            string path2 = Server.MapPath(IMAGE_DIR1 + "RegisterImage2.jpg");
+            string path3 = Server.MapPath(IMAGE_DIR1 + "RegisterImage3.jpg");
+            System.IO.File.Delete(path1);
+            System.IO.File.Delete(path2);
+            System.IO.File.Delete(path3);
+            return View();
 		}
 
 		public ActionResult Login(string email)
@@ -93,7 +100,6 @@ namespace OpenSourceProject.Controllers
 
 
 			return RedirectToAction("Index", "Home");
-			return RedirectToAction("Index");
 		}
 
 		 private byte[] String_To_Bytes2(string strInput)
