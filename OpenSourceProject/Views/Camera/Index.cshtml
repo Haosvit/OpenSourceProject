@@ -1,0 +1,45 @@
+﻿
+@{
+	ViewBag.Title = "Camera";
+}
+
+@using (Html.BeginForm())
+{
+	<div style="width: 980px; text-align: center">
+		<div>
+			<div id="Camera">
+			</div>
+			<br>
+			<button onclick="webcam.capture();">Capture and Login</button>
+		</div>
+	</div>
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+
+@section Scripts {
+	
+	<script src="@Url.Content("~/Scripts/App/jquery.webcam.js")"></script>
+
+	<script>
+			$("#Camera").webcam({
+				width: 320,
+				height: 240,
+				mode: "save",
+				swffile: "@Url.Content("~/Scripts/App/jscam.swf")",
+				onTick: function () { },
+				onSave: function () {
+					UploadPicture();
+				},
+				onCapture: function () {
+					webcam.save("@Url.Content("~/Login/Capture")/");
+			 },
+				debug: function () { },
+				onLoad: function () { }
+
+			});
+
+	</script>
+
+}
