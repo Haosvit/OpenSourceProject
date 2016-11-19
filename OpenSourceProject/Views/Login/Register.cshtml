@@ -37,23 +37,54 @@
 
 	</div>
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-		<div class="ImagesContainer">
-			<img class="Thumbnail" id="img1" src="~/Content/Images/no-image.png" onclick="capturePictureFor(this)"/>
-			<img class="Thumbnail" id="img2" src="~/Content/Images/no-image.png" onclick="capturePictureFor(this)" />
-			<img class="Thumbnail" id="img3" src="~/Content/Images/no-image.png" onclick="capturePictureFor(this)" />
-		</div>
-		
+        <div style="width: 400px; text-align: center">
+            <div>
+                <div id="Camera">
+                </div>
+                <br>
+                <div class="ImagesContainer">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img class="Thumbnail" id="img1" src="~/Content/Images/no-image.png" onclick="capturePictureFor(this)" />
+                            <button onclick="webcam.capture();">Capture</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <img class="Thumbnail" id="img2" src="~/Content/Images/no-image.png" onclick="capturePictureFor(this)" />
+                            <button onclick="webcam.capture();">Capture</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <img class="Thumbnail" id="img3" src="~/Content/Images/no-image.png" onclick="capturePictureFor(this)" />
+                            <button onclick="webcam.capture();">Capture</button>
+                        </div>
+                    </div>            
+                </div>
+                
+            </div>
+        </div>	
 	</div>
 
 </div>
 
 @section Scripts {
+<script src="@Url.Content("~/Scripts/App/jquery.webcam.js")"></script>
 <script>
-	function capturePictureFor(element) {
-		var elemId = $(element).attr("id");
+    $("#Camera").webcam({
+        width: 320,
+        height: 240,
+        mode: "save",
+        swffile: "@Url.Content("~/Scripts/App/jscam.swf")",
+    onTick: function () { },
+    onSave: function () {
+        UploadPicture();
+    },
+    onCapture: function () {
+        console.log(1);
+        webcam.save("@Url.Content("~/Login/Capture")/");
+    },
+    debug: function () { },
+    onLoad: function () { }
 
-		window.open('/Camera/Index', "wndPopUp", 'width=720,height=400,left=100,top=100,resizable=no');
+    });
+</script>
 
-	}
-	</script>
 }
