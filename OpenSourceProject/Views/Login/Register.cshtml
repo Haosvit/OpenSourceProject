@@ -7,7 +7,7 @@
 
 	<div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
 
-		<form action="" method="POST" role="form">
+		<form action="/Register/processRegister" method="POST" role="form">
 			<legend style="width: 80%">Register</legend>
 
 			<div class="form-group">
@@ -45,16 +45,16 @@
                 <div class="ImagesContainer">
                     <div class="row">
                         <div class="col-sm-4">
-                            <img class="Thumbnail" id="img1" src="~/Content/Images/no-image.png" onclick="capturePictureFor(this)" />
-                            <button onclick="webcam.capture();">Capture</button>
+                            <img class="Thumbnail" id="img1" src="~/Content/Images/no-image.png"  />
+                            <button class="captureImgBtn" data-id="img1" >Capture</button>
                         </div>
                         <div class="col-sm-4">
-                            <img class="Thumbnail" id="img2" src="~/Content/Images/no-image.png" onclick="capturePictureFor(this)" />
-                            <button onclick="webcam.capture();">Capture</button>
+                            <img class="Thumbnail" id="img2" src="~/Content/Images/no-image.png"  />
+                            <button class="captureImgBtn" data-id="img2" >Capture</button>
                         </div>
                         <div class="col-sm-4">
-                            <img class="Thumbnail" id="img3" src="~/Content/Images/no-image.png" onclick="capturePictureFor(this)" />
-                            <button onclick="webcam.capture();">Capture</button>
+                            <img class="Thumbnail" id="img3" src="~/Content/Images/no-image.png"  />
+                            <button class="captureImgBtn" data-id="img3" >Capture</button>
                         </div>
                     </div>            
                 </div>
@@ -68,6 +68,16 @@
 @section Scripts {
 <script src="@Url.Content("~/Scripts/App/jquery.webcam.js")"></script>
 <script>
+
+    $(".captureImgBtn").click(function () {
+        localStorage.elemId = $(this).attr("data-id");
+        webcam.capture();
+    });
+
+    function sleep(time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
     $("#Camera").webcam({
         width: 320,
         height: 240,
@@ -78,8 +88,26 @@
         UploadPicture();
     },
     onCapture: function () {
-        console.log(1);
-        webcam.save("@Url.Content("~/Login/Capture")/");
+        var currentElemId = localStorage.elemId;
+        if (currentElemId == "img1") {
+            webcam.save("@Url.Content("~/Register/captureRegister1")/");
+            sleep(500).then(() => {
+                document.getElementById("img1").src = "/Content/Images/Register/RegisterImage1.jpg?" + new Date().getTime();
+            });
+        }
+        if (currentElemId == "img2") {
+            webcam.save("@Url.Content("~/Register/captureRegister2")/");
+            sleep(500).then(() => {
+                document.getElementById("img2").src = "/Content/Images/Register/RegisterImage2.jpg?" + new Date().getTime();
+            });
+        }
+        if (currentElemId == "img3") {
+            webcam.save("@Url.Content("~/Register/captureRegister3")/");
+            sleep(500).then(() => {
+                document.getElementById("img3").src = "/Content/Images/Register/RegisterImage3.jpg?" + new Date().getTime();
+            });
+        }
+
     },
     debug: function () { },
     onLoad: function () { }
