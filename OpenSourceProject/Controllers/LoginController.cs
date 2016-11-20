@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using OpenSourceProject.OpenSource;
 
 namespace OpenSourceProject.Controllers
 {
@@ -13,16 +14,26 @@ namespace OpenSourceProject.Controllers
 		private string IMAGE_NAME_KEY = "image_name";
 		private string IMAGE_PATH_KEY = "image_path";
 		private string IMAGE_DIR = "~/CapturedImages/";
+        private VerifyDbContext context = null;
 		//
 		// GET: /Login/
 		public ActionResult Index()
 		{
+            context = new VerifyDbContext();
+
 			return View();
 		}
 
 		public ActionResult Register()
 		{
-			return View();
+            string IMAGE_DIR1 = "~/Content/Images/Register/";
+            string path1 = Server.MapPath(IMAGE_DIR1 + "RegisterImage1.jpg");
+            string path2 = Server.MapPath(IMAGE_DIR1 + "RegisterImage2.jpg");
+            string path3 = Server.MapPath(IMAGE_DIR1 + "RegisterImage3.jpg");
+            System.IO.File.Delete(path1);
+            System.IO.File.Delete(path2);
+            System.IO.File.Delete(path3);
+            return View();
 		}
 
 		public ActionResult Login(string email)
