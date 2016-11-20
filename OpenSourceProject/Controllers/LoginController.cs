@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -13,6 +14,7 @@ namespace OpenSourceProject.Controllers
 		private string IMAGE_NAME_KEY = "image_name";
 		private string IMAGE_PATH_KEY = "image_path";
 		private string IMAGE_DIR = "~/CapturedImages/";
+        private string person_id = "";
 		//
 		// GET: /Login/
 		public ActionResult Index()
@@ -95,12 +97,35 @@ namespace OpenSourceProject.Controllers
 			return RedirectToAction("CheckLogin");
 		}
 
-		public ActionResult CheckLogin()
+		public ActionResult CheckEmail()
 		{
-
-
-			return RedirectToAction("Index", "Home");
+            string email = "";
+            email = Request.Form["email"];
+            if (email == "lequangcanh94@gmail.com")
+            {
+                return RedirectToAction("Face", "Login");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
 		}
+
+        public ActionResult CheckLogin()
+        {
+            var getPersonRequest = (HttpWebRequest)WebRequest.Create("https://api.projectoxford.ai/face/v1.0/persongroups/{personGroupId}/persons/{personId}");
+            getPersonRequest.Method = "GET";
+            getPersonRequest.ContentType = "application/json";
+            getPersonRequest.Host = "api.projectoxford.ai";
+            getPersonRequest.Headers.Add("Ocp-Apim-Subscription-Key", "1c056c36ece84f14a0619803ee4f0ceb");
+
+            var personResponse = (HttpWebResponse)getPersonRequest.GetResponse();
+
+
+
+
+            return RedirectToAction("Index", "Login");
+        }
 
 		 private byte[] String_To_Bytes2(string strInput)
 		{
