@@ -2,41 +2,37 @@
 	ViewBag.Title = "REGISTER";
 }
 
-<div class="row" style="margin-top: 50px; padding: 20px;">
+<div class="row col-md-10 col-md-offset-1" style="margin-top: 50px; padding: 20px;">
 
+    <div class="col-sm-5 col-xs-5 col-md-5 col-lg-5" style="background: #1FAB88; border: 1px solid black; padding:10px;">
+        <form action="/Register/processRegister" method="POST" role="form">
+            <div class="form-group">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                    <input type="text" class="form-control" id="fullname" name="fullName" placeholder="Enter your name..." required>
+                </div>
+            </div>
 
-	<div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
-
-		<form action="/Register/processRegister" method="POST" role="form">
-			<legend style="width: 80%">Register</legend>
-
-			<div class="form-group">
-				<label for="fullName">Full name</label>
-				<input type="text" class="form-control" id="fullname" name="fullName" required>
-			</div>
-
-
-			<div class="form-group">
-				<label for="email">Email</label>
-				<input type="email" class="form-control" id="email" name="email" required>
-			</div>
-
-			<div>
-				<label class="radio-inline">
-					<input type="radio" name="optradio" checked="checked">Male
-				</label>
-				<label class="radio-inline">
-					<input type="radio" name="optradio">Female
-				</label>
-			</div>
-			<div style="margin-top: 30px;">
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</div>
-
-		</form>
-
-	</div>
-	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div class="form-group">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email..." required>
+                </div>
+            </div>
+            <div>
+                <label class="radio-inline">
+                    <input type="radio" name="optradio" checked="checked">Male
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="optradio">Female
+                </label>
+            </div>
+            <div style="margin-top: 30px;">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="margin-left: 40px; padding:10px;">
         <div style="width: 400px; text-align: center">
             <div>
                 <div id="Camera">
@@ -45,24 +41,32 @@
                 <div class="ImagesContainer">
                     <div class="row">
                         <div class="col-sm-4">
-                            <img class="Thumbnail" id="img1" src="~/Content/Images/no-image.png"  />
-                            <button class="captureImgBtn" data-id="img1" >Capture</button>
+                            <img class="Thumbnail" id="img1" src="~/Content/Images/no-image.png" />
+                            <button class="captureImgBtn btn btn-success" data-id="img1">
+                                <span class="glyphicon glyphicon-camera"></span>
+                                capture
+                            </button>
                         </div>
                         <div class="col-sm-4">
-                            <img class="Thumbnail" id="img2" src="~/Content/Images/no-image.png"  />
-                            <button class="captureImgBtn" data-id="img2" >Capture</button>
+                            <img class="Thumbnail" id="img2" src="~/Content/Images/no-image.png" />
+                            <button class="captureImgBtn btn btn-success" data-id="img2">
+                                <span class="glyphicon glyphicon-camera"></span>
+                                Capture
+                            </button>
                         </div>
                         <div class="col-sm-4">
-                            <img class="Thumbnail" id="img3" src="~/Content/Images/no-image.png"  />
-                            <button class="captureImgBtn" data-id="img3" >Capture</button>
+                            <img class="Thumbnail" id="img3" src="~/Content/Images/no-image.png" />
+                            <button class="captureImgBtn btn btn-success" data-id="img3">
+                                <span class="glyphicon glyphicon-camera"></span>
+                                Capture
+                            </button>
                         </div>
-                    </div>            
+                    </div>
                 </div>
-                
-            </div>
-        </div>	
-	</div>
 
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts {

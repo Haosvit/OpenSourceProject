@@ -23,13 +23,17 @@
 </head>
 <body>
 	<div class="container">
-
+        <style type="text/css">
+            body {
+                background-color: #BCCED4;
+            }
+        </style>
 
 		<div class="row Header">
 			<table>
 				<tr>
-					<td rowspan="2"><img class="PageLogo" src="~/Content/Images/page-logo.png"></td>
-					<td class="HeadLine1">DEMO MICROSOFT FACE API</td>
+					<td rowspan="2"><img class="PageLogo" src="~/Content/Images/logo.png"></td>
+					<td class="HeadLine1">Net1 Group</td>
 				</tr>
 				<tr>
 					<td class="HeadLine2">@ViewBag.Title</td>
@@ -39,15 +43,37 @@
 		<div class="row">
 			@RenderBody()
 		</div>
-		<hr />
 		<div class="row Footer" >
-			<b style="font-size: 13px;">DEMO MICROSOFT API</b><br />
-			<b>Team</b><br />
-			Nguyễn Minh Trí<br />
-			Nguyễn Phúc Hảo<br />
-			Cảnh<br />
-			Vỹ<br />
-			Thắng
+            <div class="col-lg-12" style="
+                bottom: 0;
+                background: black;
+                color: white;
+                padding: 15px;
+            ">
+                <div class="col-lg-4">
+                    <p><b>DEMO MICROSOFT API</b></p>
+                    Nguyễn Minh Trí<br/>
+                    Nguyễn Phúc Hảo<br />
+                    Lê Quang Cảnh<br />
+                    Trần Đình Vĩ<br />
+                    Nguyễn Viết Thắng
+                </div>
+                <div class="col-lg-4">
+                    <div class="row">
+                        <p><i class="fa fa-map-marker" aria-hidden="true"></i> Address: Da Nang University Technology</p>
+                    </div>
+                    <div class="row">
+                        <p><i class="fa fa-phone" aria-hidden="true"></i>Phone: 098656325</p>
+                    </div>
+                    <div class="row">
+                        <p><i class="fa fa-envelope" aria-hidden="true"></i>Email: groupnet1@gmail.com</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <p>Website Demo Microsoft Face API</p>
+                    <p style="word-wrap: break-word">This website can authenticate use your face.</p>
+                </div>
+            </div>
 		</div>
 	</div>
 	@Scripts.Render("~/bundles/jquery")
