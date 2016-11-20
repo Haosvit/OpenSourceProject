@@ -1,31 +1,31 @@
 ﻿
 @{
-    ViewBag.Title = "Capture";
+	ViewBag.Title = "Capture";
 }
 @using (Html.BeginForm())
 {
-    <div style="width: 980px; text-align: center">
-        <div>
-            <div id="Camera">
-            </div>
-            <br>
-            <button onclick="webcam.capture();">Capture</button>
-        </div>
-    </div>
+	<div style="width: 980px; text-align: center">
+		<div>
+			<div id="Camera">
+			</div>
+			<br>
+			<button onclick="webcam.capture();">Capture</button>
+		</div>
+	</div>
 }
 
 @section Scripts {
-    @*<script type="text/javascript">
-            window.onload = load();
+	@*<script type="text/javascript">
+			window.onload = load();
 
-            function load() {
-                //debugger;
-                document.getElementById('Submit1').disabled = true;
-            }
+			function load() {
+				//debugger;
+				document.getElementById('Submit1').disabled = true;
+			}
 
-        </script>*@
-    <script src="@Url.Content("~/Scripts/App/jquery.webcam.js")"></script>
-    <script>
+		</script>*@
+	<script src="@Url.Content("~/Scripts/App/jquery.webcam.js")"></script>
+	<script>
 			$("#Camera").webcam({
 				width: 320,
 				height: 240,
@@ -43,5 +43,5 @@
 
 			});
 
-    </script>
+	</script>
 }
