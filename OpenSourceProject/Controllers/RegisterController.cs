@@ -134,7 +134,6 @@ namespace OpenSourceProject.Controllers
 
 
             return RedirectToAction("Index", "Home");
-            return RedirectToAction("Index");
         }
 
         private byte[] String_To_Bytes2(string strInput)
