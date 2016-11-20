@@ -3,49 +3,51 @@
 	ViewBag.Title = "LOGIN";
 }
 
-@using (Html.BeginForm())
-{
-	<div style="width: 980px; text-align: center">
-		<div>
-			<div id="Camera">
-			</div>
-			<br>
-			<button onclick="webcam.capture();">Capture and Login</button>
-		</div>
-	</div>
-}
+<form action="/Login/CheckLogin" method="POST" role="form">
+    <div style="width: 980px; text-align: center">
+        <div>
+            <div id="Camera">
+            </div>
+            <button class="btn btn-success" onclick="webcam.capture();">
+                <span class="glyphicon glyphicon-camera"></span>
+                Capture and Login
+            </button>
+        </div>
+    </div>
+    <br /><br /><br /><br />
+</form>
 
 
-@section Scripts {
-@*<script type="text/javascript">
-	window.onload = load();
+    @section Scripts {
+        @*<script type="text/javascript">
+                window.onload = load();
 
-	function load() {
-		//debugger;
-		document.getElementById('Submit1').disabled = true;
-	}
+                function load() {
+                    //debugger;
+                    document.getElementById('Submit1').disabled = true;
+                }
 
-</script>*@
-<script src="@Url.Content("~/Scripts/App/jquery.webcam.js")"></script>
+            </script>*@
+        <script src="@Url.Content("~/Scripts/App/jquery.webcam.js")"></script>
 
-<script>
-			$("#Camera").webcam({
-				width: 320,
-				height: 240,
-				mode: "save",
-				swffile: "@Url.Content("~/Scripts/App/jscam.swf")",
-				onTick: function () { },
-				onSave: function () {
-					UploadPicture();
-				},
-				onCapture: function () {
-					webcam.save("@Url.Content("~/Login/Capture")/");
-			 },
-				debug: function () { },
-				onLoad: function () { }
+        <script>
+            $("#Camera").webcam({
+                width: 320,
+                height: 240,
+                mode: "save",
+                swffile: "@Url.Content("~/Scripts/App/jscam.swf")",
+                onTick: function () { },
+                onSave: function () {
+                    UploadPicture();
+                },
+                onCapture: function () {
+                    webcam.save("@Url.Content("~/Login/Capture")/");
+                },
+                debug: function () { },
+                onLoad: function () { }
 
-			});
+            });
 
-</script>
+        </script>
 
-}
+    }
