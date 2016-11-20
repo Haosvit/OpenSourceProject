@@ -118,7 +118,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\Register\" />
-    <Folder Include="OpenSource\Models\" />
     <Folder Include="Views\Register\" />
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using OpenSourceProject.OpenSource;
 
 namespace OpenSourceProject.Controllers
 {
@@ -13,10 +14,13 @@ namespace OpenSourceProject.Controllers
 		private string IMAGE_NAME_KEY = "image_name";
 		private string IMAGE_PATH_KEY = "image_path";
 		private string IMAGE_DIR = "~/CapturedImages/";
+        private VerifyDbContext context = null;
 		//
 		// GET: /Login/
 		public ActionResult Index()
 		{
+            context = new VerifyDbContext();
+
 			return View();
 		}
 
