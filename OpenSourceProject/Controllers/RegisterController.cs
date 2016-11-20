@@ -10,6 +10,7 @@ using System.Collections.Specialized;
 using System.Diagnostics;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Data.Entity;
 
 namespace OpenSourceProject.Controllers
 {
@@ -138,6 +139,8 @@ namespace OpenSourceProject.Controllers
             email = form["email"];
             sex = form["optradio"];
             Debug.WriteLine(fullName + email + sex);
+
+            D
             //Goi hàm kiểm tra email đã tồn tại checkEmail(email); trả về true nếu đã tồn tại trong database
             try
             {
