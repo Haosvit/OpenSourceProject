@@ -8,14 +8,14 @@
 		<div class="container">
 			<form action="/Login/Face" method="POST" role="form">
 				<legend>LOGIN</legend>
-				<div class="form-group">
-					<label for="email">Email</label>
-					<input type="email" class="form-control" id="email" required>
-				</div>
-				<button type="submit" class="btn btn-success">Continue ></button>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
+                    <input type="email" class="form-control" id="email" required placeholder="Enter your email..." aria-describedby="sizing-addon1">
+                </div>
+                <button type="submit" class="btn btn-success">Continue 
+                <span class="glyphicon glyphicon-arrow-right"></span></button>
 			</form>
-			<hr />
-			<a href="/Login/Register">Register</a>
+			<a class="btn btn-warning" style="float: right;" href="/Login/Register"><span class="glyphicon glyphicon-registration-mark"></span> register</a>
 		</div>
 	</div>
 </div> 
