@@ -72,9 +72,9 @@ namespace OpenSourceProject.Controllers
 
 		public ActionResult CheckEmail()
 		{
-            string email = "";
-            email = Request.Form["email"];
-            if (email == "lequangcanh94@gmail.com")
+            string email = Request.Form["email"];
+            personId = getPersonId(email);
+            if (personId != "error")
             {
                 return RedirectToAction("Face", "Login");
             }
@@ -104,6 +104,46 @@ namespace OpenSourceProject.Controllers
             {
                 Response.Write("<script language='JavaScript'> alert('Please try again...'); </script>");
                 return RedirectToAction("Index", "Login");
+            }
+        }
+
+        private string getPersonId(string email)
+        {
+            string error = "error";
+            try
+            {
+                // Send request
+                var personRequest = (HttpWebRequest)WebRequest.Create("https://api.projectoxford.ai/face/v1.0/persongroups/" + personGroupId + "/persons");
+                personRequest.Method = "GET";
+                personRequest.Host = "api.projectoxford.ai";
+                personRequest.Headers.Add("Ocp-Apim-Subscription-Key", "1c056c36ece84f14a0619803ee4f0ceb");
+
+                // Get response
+                var personResponse = (HttpWebResponse)personRequest.GetResponse();
+                if (personResponse.StatusDescription.ToString().ToUpper() == "OK")
+                {
+                    var responseString = new StreamReader(personResponse.GetResponseStream()).ReadToEnd();
+                    string json = responseString.ToString();
+                    dynamic personArray = JsonConvert.DeserializeObject(json);
+                    foreach (var item in personArray)
+                    {
+                        if (item.name == email)
+                        {
+                            return item.personId;
+                        }
+                    }
+                    return error;
+                }
+                else
+                {
+                    Response.Write("<script language='JavaScript'> alert('Fail connection...'); </script>");
+                    return error;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.Message);
+                return error;
             }
         }
 
