@@ -14,123 +14,138 @@ using System.Data.Entity;
 
 namespace OpenSourceProject.Controllers
 {
-    public class RegisterController : Controller
+public class RegisterController : Controller
+{
+    private string IMAGE_NAME_KEY = "image_name";
+    private string IMAGE_PATH_KEY = "image_path";
+    private string IMAGE_DIR = "~/Content/Images/Register/";
+    // GET: Register
+    public ActionResult Index()
     {
-        private string IMAGE_NAME_KEY = "image_name";
-        private string IMAGE_PATH_KEY = "image_path";
-        private string IMAGE_DIR = "~/Content/Images/Register/";
-        // GET: Register
-        public ActionResult Index()
+        return View();
+    }
+
+    public void captureRegister1()
+    {
+        var stream = Request.InputStream;
+
+        string dump;
+
+        string path = "";
+
+        using (var reader = new StreamReader(stream))
         {
-            return View();
-        }
+            dump = reader.ReadToEnd();
 
-        public void captureRegister1()
-        {
-            var stream = Request.InputStream;
+            DateTime nm = DateTime.Now;
 
-            string dump;
+            string date = nm.ToString("yyyymmddMMss");
 
-            string path = "";
 
-            using (var reader = new StreamReader(stream))
+            path = Server.MapPath(IMAGE_DIR + "RegisterImage1.jpg");
+
+            string dir = Directory.GetParent(path).FullName;
+            //path = Path.Combine(dir, "user_" + date + ".jpg");
+            if (!Directory.Exists(dir))
             {
-                dump = reader.ReadToEnd();
+                Directory.CreateDirectory(dir);
+            }
 
-                DateTime nm = DateTime.Now;
+            //System.IO.File.SetAttributes(path, FileAttributes.Normal);
 
-                string date = nm.ToString("yyyymmddMMss");
-
-
-                path = Server.MapPath(IMAGE_DIR + "RegisterImage1.jpg");
-
-                string dir = Directory.GetParent(path).FullName;
-                //path = Path.Combine(dir, "user_" + date + ".jpg");
-                if (!Directory.Exists(dir))
-                {
-                    Directory.CreateDirectory(dir);
-                }
-
-                //System.IO.File.SetAttributes(path, FileAttributes.Normal);
-
-                // TODO: chỗ này t thấy lấy cái byte này gửi lên validate luôn cũng được, khỏi cần lưu
-                System.IO.File.WriteAllBytes(path, String_To_Bytes2(dump));
+            // TODO: chỗ này t thấy lấy cái byte này gửi lên validate luôn cũng được, khỏi cần lưu
+            System.IO.File.WriteAllBytes(path, String_To_Bytes2(dump));
 
                 
-            }
         }
+    }
 
-        public void captureRegister2()
+    public void captureRegister2()
+    {
+        var stream = Request.InputStream;
+
+        string dump;
+
+        string path = "";
+
+        using (var reader = new StreamReader(stream))
         {
-            var stream = Request.InputStream;
+            dump = reader.ReadToEnd();
 
-            string dump;
+            DateTime nm = DateTime.Now;
 
-            string path = "";
+            string date = nm.ToString("yyyymmddMMss");
 
-            using (var reader = new StreamReader(stream))
+
+            path = Server.MapPath(IMAGE_DIR + "RegisterImage2.jpg");
+
+            string dir = Directory.GetParent(path).FullName;
+            //path = Path.Combine(dir, "user_" + date + ".jpg");
+            if (!Directory.Exists(dir))
             {
-                dump = reader.ReadToEnd();
-
-                DateTime nm = DateTime.Now;
-
-                string date = nm.ToString("yyyymmddMMss");
-
-
-                path = Server.MapPath(IMAGE_DIR + "RegisterImage2.jpg");
-
-                string dir = Directory.GetParent(path).FullName;
-                //path = Path.Combine(dir, "user_" + date + ".jpg");
-                if (!Directory.Exists(dir))
-                {
-                    Directory.CreateDirectory(dir);
-                }
-
-                //System.IO.File.SetAttributes(path, FileAttributes.Normal);
-
-                // TODO: chỗ này t thấy lấy cái byte này gửi lên validate luôn cũng được, khỏi cần lưu
-                System.IO.File.WriteAllBytes(path, String_To_Bytes2(dump));
-
-
+                Directory.CreateDirectory(dir);
             }
-        }
 
-        public void captureRegister3()
+            //System.IO.File.SetAttributes(path, FileAttributes.Normal);
+
+            // TODO: chỗ này t thấy lấy cái byte này gửi lên validate luôn cũng được, khỏi cần lưu
+            System.IO.File.WriteAllBytes(path, String_To_Bytes2(dump));
+
+
+        }
+    }
+
+    public void captureRegister3()
+    {
+        var stream = Request.InputStream;
+
+        string dump;
+
+        string path = "";
+
+        using (var reader = new StreamReader(stream))
         {
-            var stream = Request.InputStream;
+            dump = reader.ReadToEnd();
 
-            string dump;
+            DateTime nm = DateTime.Now;
 
-            string path = "";
+            string date = nm.ToString("yyyymmddMMss");
 
-            using (var reader = new StreamReader(stream))
+
+            path = Server.MapPath(IMAGE_DIR + "RegisterImage3.jpg");
+
+            string dir = Directory.GetParent(path).FullName;
+            //path = Path.Combine(dir, "user_" + date + ".jpg");
+            if (!Directory.Exists(dir))
             {
-                dump = reader.ReadToEnd();
-
-                DateTime nm = DateTime.Now;
-
-                string date = nm.ToString("yyyymmddMMss");
-
-
-                path = Server.MapPath(IMAGE_DIR + "RegisterImage3.jpg");
-
-                string dir = Directory.GetParent(path).FullName;
-                //path = Path.Combine(dir, "user_" + date + ".jpg");
-                if (!Directory.Exists(dir))
-                {
-                    Directory.CreateDirectory(dir);
-                }
-
-                //System.IO.File.SetAttributes(path, FileAttributes.Normal);
-
-                // TODO: chỗ này t thấy lấy cái byte này gửi lên validate luôn cũng được, khỏi cần lưu
-                System.IO.File.WriteAllBytes(path, String_To_Bytes2(dump));
-
-
+                Directory.CreateDirectory(dir);
             }
-        }
 
-        public ActionResult processRegister()
+            //System.IO.File.SetAttributes(path, FileAttributes.Normal);
+
+            // TODO: chỗ này t thấy lấy cái byte này gửi lên validate luôn cũng được, khỏi cần lưu
+            System.IO.File.WriteAllBytes(path, String_To_Bytes2(dump));
+
+
+        }
+    }
+
+    public ActionResult processRegister()
+    {
+        //check đã chụp ảnh chưa
+        string path1 = Server.MapPath(IMAGE_DIR + "RegisterImage1.jpg");
+        string path2 = Server.MapPath(IMAGE_DIR + "RegisterImage2.jpg");
+        string path3 = Server.MapPath(IMAGE_DIR + "RegisterImage3.jpg");
+
+        string dir1 = Directory.GetParent(path1).FullName;
+        string dir2 = Directory.GetParent(path2).FullName;
+        string dir3 = Directory.GetParent(path3).FullName;
+
+        if (!System.IO.File.Exists(path1) && !System.IO.File.Exists(path2) && !System.IO.File.Exists(path3))
+        {
+            return RedirectToAction("Register", "Login");
+        }
+        else
         {
             NameValueCollection form = Request.Form;
             string fullName = "", email = "", personId = "";
@@ -140,58 +155,47 @@ namespace OpenSourceProject.Controllers
             sex = form["optradio"];
             Debug.WriteLine(fullName + email + sex);
 
-            D
-            //Goi hàm kiểm tra email đã tồn tại checkEmail(email); trả về true nếu đã tồn tại trong database
-            try
-            {
-                Debug.WriteLine(1);
-                //Tao mới person
-                var request =
-                    (HttpWebRequest)
-                        WebRequest.Create(
-                            "https://api.projectoxford.ai/face/v1.0/persongroups/open_source_net1/persons");
-                var postData = "{\"name\":\"" + email + "\",\"userData\":\"user-provided data attached to the person group\"}";
-                //var imgBinary = File.ReadAllBytes(_imgPath1);
 
-                byte[] byteData = Encoding.UTF8.GetBytes(postData);
-                //var data = Encoding.ASCII.GetBytes(postData);
-
-                request.Method = "POST";
-                request.ContentType = "application/json";
-                request.ContentLength = byteData.Length;
-                request.Host = "api.projectoxford.ai";
-                request.Headers.Add("Ocp-Apim-Subscription-Key", "1c056c36ece84f14a0619803ee4f0ceb");
-
-                using (var stream = request.GetRequestStream())
+                //Goi hàm kiểm tra email đã tồn tại checkEmail(email); trả về true nếu đã tồn tại trong database
+                try
                 {
-                    stream.Write(byteData, 0, byteData.Length);
-                }
+                    Debug.WriteLine(1);
+                    //Tao mới person
+                    var request =
+                        (HttpWebRequest)
+                            WebRequest.Create(
+                                "https://api.projectoxford.ai/face/v1.0/persongroups/open_source_net1/persons");
+                    var postData = "{\"name\":\"" + email + "\",\"userData\":\"user-provided data attached to the person group\"}";
+                    //var imgBinary = File.ReadAllBytes(_imgPath1);
 
-                var response = (HttpWebResponse)request.GetResponse();
+                    byte[] byteData = Encoding.UTF8.GetBytes(postData);
+                    //var data = Encoding.ASCII.GetBytes(postData);
 
-                var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                string json = responseString.ToString();
-                dynamic stuff = JObject.Parse(json);
-                personId = stuff.personId;
-                
-                //Vi - TODO: goi ham luu person moi vao database addPerson(fullName, email, personId);
+                    request.Method = "POST";
+                    request.ContentType = "application/json";
+                    request.ContentLength = byteData.Length;
+                    request.Host = "api.projectoxford.ai";
+                    request.Headers.Add("Ocp-Apim-Subscription-Key", "1c056c36ece84f14a0619803ee4f0ceb");
+
+                    using (var stream = request.GetRequestStream())
+                    {
+                        stream.Write(byteData, 0, byteData.Length);
+                    }
+
+                    var response = (HttpWebResponse)request.GetResponse();
+
+                    var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                    string json = responseString.ToString();
+                    dynamic stuff = JObject.Parse(json);
+                    personId = stuff.personId;
+
+                    //Vi - TODO: goi ham luu person moi vao database addPerson(fullName, email, personId);
 
 
-                //check đã chụp ảnh chưa
-                string path1 = Server.MapPath(IMAGE_DIR + "RegisterImage1.jpg");
-                string path2 = Server.MapPath(IMAGE_DIR + "RegisterImage2.jpg");
-                string path3 = Server.MapPath(IMAGE_DIR + "RegisterImage3.jpg");
 
-                string dir1 = Directory.GetParent(path1).FullName;
-                string dir2 = Directory.GetParent(path2).FullName;
-                string dir3 = Directory.GetParent(path3).FullName;
-
-                if (!System.IO.File.Exists(path1) && !System.IO.File.Exists(path2) && !System.IO.File.Exists(path3))
-                {
-                    return RedirectToAction("Register", "Login");
-                }else{
                     //add ảnh vào person
-                    if (Directory.Exists(dir1)){
+                    if (Directory.Exists(dir1))
+                    {
                         Debug.WriteLine(2);
                         var request1 =
                         (HttpWebRequest)
@@ -201,7 +205,7 @@ namespace OpenSourceProject.Controllers
                         Debug.WriteLine(path1);
                         var imgBinary = System.IO.File.ReadAllBytes(path1);
 
-                        
+
                         request1.Method = "POST";
                         request1.ContentType = "application/octet-stream";
                         request1.ContentLength = imgBinary.Length;
@@ -289,40 +293,39 @@ namespace OpenSourceProject.Controllers
                         //addIdentification(userId, persistedFaceId)
                     }
                 }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show(ex.Message);
+                    Debug.WriteLine(ex.Message);
+                    return RedirectToAction("Register", "Login");
+                }
 
-                
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show(ex.Message);
-                Debug.WriteLine(ex.Message);
-                return RedirectToAction("Register", "Login");
-            }
-
-
-
-            return RedirectToAction("Index","Login");
         }
-
-        public ActionResult CheckLogin()
-        {
+            
 
 
-            return RedirectToAction("Index", "Home");
-        }
-
-        private byte[] String_To_Bytes2(string strInput)
-        {
-            int numBytes = (strInput.Length) / 2;
-
-            byte[] bytes = new byte[numBytes];
-
-            for (int x = 0; x < numBytes; ++x)
-            {
-                bytes[x] = Convert.ToByte(strInput.Substring(x * 2, 2), 16);
-            }
-
-            return bytes;
-        }
+        return RedirectToAction("Index","Login");
     }
+
+    public ActionResult CheckLogin()
+    {
+
+
+        return RedirectToAction("Index", "Home");
+    }
+
+    private byte[] String_To_Bytes2(string strInput)
+    {
+        int numBytes = (strInput.Length) / 2;
+
+        byte[] bytes = new byte[numBytes];
+
+        for (int x = 0; x < numBytes; ++x)
+        {
+            bytes[x] = Convert.ToByte(strInput.Substring(x * 2, 2), 16);
+        }
+
+        return bytes;
+    }
+}
 }
