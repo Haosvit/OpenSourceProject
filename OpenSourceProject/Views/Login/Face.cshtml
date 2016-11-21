@@ -1,6 +1,11 @@
 ﻿
 @{
-	ViewBag.Title = "LOGIN";
+	ViewBag.Title = "Capture your face";
+}
+<br />
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger">@TempData["error"]</div>
 }
 
 <form action="/Login/CheckLogin" method="POST" role="form">

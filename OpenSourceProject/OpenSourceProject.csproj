@@ -183,6 +183,7 @@
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Login\Face.cshtml" />
     <Content Include="Views\Camera\Index.cshtml" />
+    <Content Include="Views\Login\Congratulation.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

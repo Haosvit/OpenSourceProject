@@ -50,7 +50,13 @@ namespace OpenSourceProject.Controllers
 			return View();
 		}
 
-		public void Capture()
+        public ActionResult Congratulation()
+        {
+            return View();
+        }
+
+
+        public void Capture()
 		{
 			var stream = Request.InputStream;
 
@@ -81,11 +87,13 @@ namespace OpenSourceProject.Controllers
 			personId = getPersonId(email);
 			if (personId != "error")
 			{
-				return RedirectToAction("Face", "Login");
+                
+                return RedirectToAction("Face", "Login");
 			}
 			else
 			{
-				Response.Write(string.Format("<script type='text/javascript'>alert('Not found this email')</script>"));
+                TempData["error"] = "Sai email";
+                //Response.Write(string.Format("<script type='text/javascript'>alert('Not found this email')</script>"));
 				return RedirectToAction("Index", "Login");
 			}
 		}
@@ -96,19 +104,21 @@ namespace OpenSourceProject.Controllers
 			{
 				if (verifyLogin(getFaceId()))
 				{
-					return RedirectToAction("Index", "Home");
+					return RedirectToAction("Congratulation", "Home");
 				}
 				else
 				{
-					Response.Write("<script language='JavaScript'> alert('Please try again...'); </script>");
-					return RedirectToAction("Index", "Login");
+                    TempData["error"] = "Please try again...";
+                    //Response.Write("<script language='JavaScript'> alert('Please try again...'); </script>");
+                    return RedirectToAction("Index", "Login");
 				}
 
 			}
 			else
 			{
-				Response.Write("<script language='JavaScript'> alert('Please try again...'); </script>");
-				return RedirectToAction("Index", "Login");
+                TempData["error"] = "Please try again...";
+                //Response.Write("<script language='JavaScript'> alert('Please try again...'); </script>");
+                return RedirectToAction("Index", "Login");
 			}
 		}
 
