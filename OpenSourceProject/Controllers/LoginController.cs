@@ -24,14 +24,18 @@ namespace OpenSourceProject.Controllers
 		// GET: /Login/
 		public ActionResult Index()
 		{
-			//context = new VerifyDbContext();
-			//var userDa = new UserDa();
-			//var addedUser = userDa.Add(new User { Email = "hao@hao.com", Gender = "male", Name = "Hao", PersonId= new Guid().ToString() });
-			//var verificationDa = new VerificationDa();
+            //context = new VerifyDbContext();
+            //var userDa = new UserDa();
+            //var addedUser = userDa.Add(new User { Email = "hao@hao.com", Gender = "male", Name = "Hao", PersonId= new Guid().ToString() });
+            //var verificationDa = new VerificationDa();
 
-			//verificationDa.Add(new Verification { PersistedFaceId = new Guid().ToString(), UserId = addedUser.Id });
-
-			return View();
+            //verificationDa.Add(new Verification { PersistedFaceId = new Guid().ToString(), UserId = addedUser.Id });
+            string path = Server.MapPath(IMAGE_DIR + "login.jpg");
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            }
+            return View();
 		}
 
 		public ActionResult Register()
@@ -241,6 +245,7 @@ namespace OpenSourceProject.Controllers
 				var verifyResponse = (HttpWebResponse)verifyRequest.GetResponse();
 				var responseString = new StreamReader(verifyResponse.GetResponseStream()).ReadToEnd();
 				string json = responseString.ToString();
+                Debug.WriteLine(json);
 				dynamic result = JsonConvert.DeserializeObject(json);
 				Boolean isIdentical = result.isIdentical;
 				return isIdentical;
