@@ -131,6 +131,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="OpenSource\VerificationDa.cs" />
+    <Compile Include="OpenSource\UserDa.cs" />
     <Compile Include="OpenSource\Verification.cs" />
     <Compile Include="OpenSource\User.cs" />
     <Compile Include="OpenSource\VerifyDbContext.cs" />
