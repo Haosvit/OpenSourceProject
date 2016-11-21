@@ -23,12 +23,12 @@ namespace OpenSourceProject.Controllers
 		// GET: /Login/
 		public ActionResult Index()
 		{
-			context = new VerifyDbContext();
-			var userDa = new UserDa();
-			var addedUser = userDa.Add(new User { Email = "hao@hao.com", Gender = "male", Name = "Hao", PersonId= new Guid().ToString() });
-			var verificationDa = new VerificationDa();
+			//context = new VerifyDbContext();
+			//var userDa = new UserDa();
+			//var addedUser = userDa.Add(new User { Email = "hao@hao.com", Gender = "male", Name = "Hao", PersonId= new Guid().ToString() });
+			//var verificationDa = new VerificationDa();
 
-			verificationDa.Add(new Verification { PersistedFaceId = new Guid().ToString(), UserId = addedUser.Id });
+			//verificationDa.Add(new Verification { PersistedFaceId = new Guid().ToString(), UserId = addedUser.Id });
 
 			return View();
 		}
