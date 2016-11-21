@@ -10,6 +10,7 @@ using OpenSourceProject.OpenSource;
 using Newtonsoft.Json.Linq;
 using System.Text;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace OpenSourceProject.Controllers
 {
@@ -85,9 +86,11 @@ namespace OpenSourceProject.Controllers
 		{
 			string email = Request.Form["email"];
 			personId = getPersonId(email);
+            Debug.WriteLine(1);
+            Debug.WriteLine(personId);
 			if (personId != "error")
 			{
-                
+                Session["personId"] = personId;
                 return RedirectToAction("Face", "Login");
 			}
 			else
@@ -104,13 +107,13 @@ namespace OpenSourceProject.Controllers
 			{
 				if (verifyLogin(getFaceId()))
 				{
-					return RedirectToAction("Congratulation", "Home");
+					return RedirectToAction("Congratulation", "Login");
 				}
 				else
 				{
                     TempData["error"] = "Please try again...";
                     //Response.Write("<script language='JavaScript'> alert('Please try again...'); </script>");
-                    return RedirectToAction("Index", "Login");
+                    return RedirectToAction("Face", "Login");
 				}
 
 			}
@@ -118,7 +121,7 @@ namespace OpenSourceProject.Controllers
 			{
                 TempData["error"] = "Please try again...";
                 //Response.Write("<script language='JavaScript'> alert('Please try again...'); </script>");
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Face", "Login");
 			}
 		}
 
@@ -187,6 +190,7 @@ namespace OpenSourceProject.Controllers
 
 					// Get response to get faceId
 					var loginResponse = (HttpWebResponse)loginRequest.GetResponse();
+                    Debug.WriteLine(loginResponse.ToString());
 					if (loginResponse.StatusDescription.ToString().ToUpper() == "OK")
 					{
 						var responseString = new StreamReader(loginResponse.GetResponseStream()).ReadToEnd();
@@ -217,8 +221,11 @@ namespace OpenSourceProject.Controllers
 		{
 			try
 			{
+                personId = Session["personId"].ToString();
 				// Create request with faceId
 				var verifyRequest = (HttpWebRequest)WebRequest.Create("https://api.projectoxford.ai/face/v1.0/verify");
+                Debug.WriteLine(2);
+                Debug.WriteLine(faceIdParam+"|"+personId+"|"+personGroupId);
 				var postData = "{\"faceId\":\"" + faceIdParam + "\",\"personId\":\"" + personId + "\",\"personGroupId\":\"" + personGroupId + "\"}";
 				byte[] byteData = Encoding.UTF8.GetBytes(postData);
 				verifyRequest.Method = "POST";
