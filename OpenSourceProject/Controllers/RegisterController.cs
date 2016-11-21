@@ -145,6 +145,7 @@ namespace OpenSourceProject.Controllers
 
             if (!System.IO.File.Exists(path1) && !System.IO.File.Exists(path2) && !System.IO.File.Exists(path3))
             {
+                TempData["error"] = "Bạn chưa chụp ảnh";
                 return RedirectToAction("Register", "Login");
             }
             else
@@ -163,6 +164,7 @@ namespace OpenSourceProject.Controllers
                 var verificationDa = new VerificationDa();
                 if (userDa.HasMailExisted(email))
                 {
+                    TempData["error"] = "Email "+email+" đã được sử dụng để đăng ký trước đây";
                     return RedirectToAction("Register", "Login");
                 }
                 else
@@ -310,6 +312,7 @@ namespace OpenSourceProject.Controllers
                     {
                         //MessageBox.Show(ex.Message);
                         Debug.WriteLine(ex.Message);
+                        TempData["error"] = "Xảy ra lỗi trong quá trình giao tiếp với API, bạn vui long tiến hành đăng ký lại";
                         return RedirectToAction("Register", "Login");
                     }
                 }
